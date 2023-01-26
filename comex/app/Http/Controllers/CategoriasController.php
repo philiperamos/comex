@@ -2,13 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categoria;
 use Illuminate\Http\Request;
 
 class CategoriasController extends Controller
 {
     public function Index(Request $request){
-         $categorias = ['CELULARES','INFORMÁTICA', 'MÓVEIS', 'AUTOMOTIVA', 'LIVROS', 'BELEZA', 'ESPORTE', 'LUXO'];
+         $categorias = new Categoria();
 
-         return view('categorias.index') -> with('categorias',$categorias);
+         $cat = $categorias->all();
+
+         return view('categorias.index') -> with('categorias',$cat);
     }
 }
+
+

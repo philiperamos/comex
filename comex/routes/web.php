@@ -15,3 +15,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/categorias', [CategoriasController::class,'Index']);
+
+Route::get('/categorias/criar', [CategoriasController::class,'Create']);
+
+Route::post('/categorias/salvar', [CategoriasController::class,'Store']);
+

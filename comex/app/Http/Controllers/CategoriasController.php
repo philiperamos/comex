@@ -14,6 +14,21 @@ class CategoriasController extends Controller
 
          return view('categorias.index') -> with('categorias',$cat);
     }
+
+    public function Create(){
+        return view('categorias.create');
+    }
+
+    public function Store(Request $request){
+        $nome = $request->input('nome');
+
+        $categorias = new Categoria();
+
+        $categorias->nome = $nome;
+        $categorias->save();
+
+        return redirect('/categorias');
+    }
 }
 
 

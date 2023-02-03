@@ -23,4 +23,6 @@ Route::controller(CategoriasController::class)->group(function(){
     Route::get('/categorias/criar', 'Create')->name('categorias.create');
     
     Route::post('/categorias/salvar', 'Store')->name('categorias.store');
+
+    Route::delete('/categorias/delete/{id}', 'Destroy')->name('categorias.destroy');
 });

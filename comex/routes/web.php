@@ -14,9 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/categorias', [CategoriasController::class,'Index']);
 
-Route::get('/categorias/criar', [CategoriasController::class,'Create']);
 
-Route::post('/categorias/salvar', [CategoriasController::class,'Store']);
 
+Route::controller(CategoriasController::class)->group(function(){
+    Route::get('/categorias', 'Index')->name('categorias.index');
+
+    Route::get('/categorias/criar', 'Create')->name('categorias.create');
+    
+    Route::post('/categorias/salvar', 'Store')->name('categorias.store');
+});

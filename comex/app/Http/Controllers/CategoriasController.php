@@ -10,9 +10,13 @@ class CategoriasController extends Controller
     public function Index(Request $request){
          $categorias = new Categoria();
 
-         $cat = $categorias->all();
+         $cat = $categorias->query()->orderBy('nome', 'asc')->get();
 
-         return view('categorias.index') -> with('categorias',$cat);
+         $messageSuccess = $request->session()->get('messageSuccess');
+
+         return view('categorias.index') 
+                -> with('categorias',$cat)
+                ->with('messageSuccess', $messageSuccess);
     }
 
     public function Create(){
@@ -20,14 +24,17 @@ class CategoriasController extends Controller
     }
 
     public function Store(Request $request){
-        $nome = $request->input('nome');
+        $nome = $request->nome;
 
-        $categorias = new Categoria();
+        $validatedData = $request->validate([
+          'nome' => ['required', 'min:3']
+        ]);
 
-        $categorias->nome = $nome;
-        $categorias->save();
+        Categoria::create(['nome'=>$validatedData]);
+        $request->session()->flash('messageSuccess', 'Registrado com sucesso!');
+        
 
-        return redirect('/categorias');
+        return to_route('categorias.index');
     }
 }
 

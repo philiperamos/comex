@@ -1,7 +1,17 @@
 <x-layout title="Categorias - Criar">
-    <form method="POST" action="/categorias/salvar">
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
+    <form method="POST" action="{{route('categorias.store')}}">
         @csrf
-        <input type="text" id="nome" name="nome" placeholder="Nome" />
-        <button type="submit">Salvar</button>
+        <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome" />
+        <button type="submit" class="btn btn-primary">Salvar</button>
     </form>
 </x-layout>

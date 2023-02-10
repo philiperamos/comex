@@ -6,6 +6,7 @@
         @vite(['resources/js/app.js'])
     </head>
     <body>
+        <x-navbar title="Categorias"></x-navbar>
         <div class="container-fluid">
         {{$slot}}
         </div>

@@ -1,5 +1,8 @@
 <x-layout title="Categorias">
+     @auth
     <a href="{{route('categorias.create')}}" class="btn btn-primary">Criar nova categoria</a>
+    @endauth
+    
     @if($messageSuccess)
      <div class="alert alert-success alert-dismissible" role="alert">
         {{$messageSuccess}}
@@ -17,8 +20,10 @@
             <form method="post" action="{{route('categorias.destroy', $categoria->id)}}">
                 @csrf
                 @method('DELETE')
-
-                <button type="submit" class="btn btn-danger">&chi;</button>
+                
+                @auth
+                    <button type="submit" class="btn btn-danger">&chi;</button>
+                @endauth
             </form>
         </li>
     @endforeach
